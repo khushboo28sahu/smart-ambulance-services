@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href= "{{ url_for('static',filename='styles/login_style.css') }}">
+</head>
+<body>
+  <h2 style="text-align: center;"><b>Login Form</b></h2>
+
+  <form action="http://10.3.53.16:5076/validate " method="post"> 
+    <div class="imgcontainer">
+      <img src="{{ url_for('static', filename='user.jpeg') }}" alt="Avatar" class="avatar">
+    </div>
+
+    <div class="container" style="text-align: center;">
+      <input type="text" placeholder="Enter Username" name="uname" required><br>
+
+      <input type="password" placeholder="Enter Password" name="psw" required><br>
+        
+      <button id="submit">Login</button><br> <!--onclick="location.href = 'Info_Stream.html'"-->
+
+      <label>
+      <input type="checkbox" checked="checked" name="remember"> Remember me
+      </label>
+    </div>
+
+    <div class="container" style="text-align: center;" >
+      <button id="button" class="cancelbtn">Cancel</button><br>
+      <span class="psw">Forgot <a href="#">password?</a></span>
+    </div>
+
+  </form>
+  <!-- <a href = "/Info_Stream"></a><br>   -->
+</body>
+</html>

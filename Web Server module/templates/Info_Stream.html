@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/info_stream.css') }}">
+    <META HTTP-EQUIV="Access-Control-Allow-Origin"> <!--CONTENT="http://127.0.0.1:8001">-->
+    <title>Informatio & Stream Page </title>
+</head>
+
+<body>
+    <div class="container">
+        <button id="info" class="button">Information</button>
+        <button id="stream" class="button"> Stream</button>
+      </div>
+    
+    <!-- <form method="post" class="userinput" id="form">  -->
+    <div class="hospital">
+        <label for="hospital"><b>Hospital Name</label>
+        <select name="hospital" class="select_hospital" id="Hospital_List">
+            <!-- <option value = "">-- select hospital name --</option> -->
+            <option value="HOSP01"> V Y Hospital</option>
+            <option value="HOSP02"> NH MMI hospital</option>
+            <option value="HOSP03"> Sri Sai Baba Hospital </option>
+            <option value="HOSP04"> Life Care Hospital </option>
+            <option value="HOSP05"> Raipura Hospital</option>
+        </select><br>
+    </div>
+
+    <div class="status">
+        <label for="status"><b>Active status</b></label>
+        <select name="status" class="select_status" id="status">
+            <!-- <option value="">-- status-- </option> -->
+            <option value="active"> Yes </option>
+            <option value="deactive"> No </option>
+        </select><br>
+    </div>
+
+    <div class="doctorslist" >
+        <label for="doctors"><b>Doctors List</b></label><br>
+        <table id="doctors">
+            <thead>
+                <tr>
+                    <th>Speciality</th>
+                    <th>Doctors</th>
+                </tr>
+            </thead>
+            <tbody style="width:100%">
+                <tr>
+                    <td>Cardiologist</td>
+                    <td>
+                        <label for="cardio">Dr.House </label>
+                        <input type="checkbox" name="dr.house"  id="Cardio" value="dr.house">
+                    </td>
+                </tr>
+                <tr>
+                    <td><b> Neurosurgeon</b></td>
+                    <td>
+                        <label for="neuro">Dr.foreman</label>
+                        <input type="checkbox" name="dr.foreman" id="neuro" value="dr.foreman">
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Orthopedist</td>
+                    <td>
+                        <label for="ortho"> Dr.cuddy </label>
+                        <input type="checkbox" name="dr.cuddy" id="Ortho" value="dr.cuddy">
+                    </td>
+                </tr>
+                <tr>
+                    <td><b> Opthalmologist</b></td>
+                    <td>
+                        <label for="pediatric">Dr.cameron</label>
+                        <input type="checkbox" name="dr.cameron" id="Opthalmo" value="dr.cameron">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="submit">
+        <button id="submit" class="submit_hospinfo">Submit</button>  <!--onclick="Post_Hospital_Info()-->
+        <button id="clear" class="clear"> clear </button>
+    </div>
+    <script type="text/javascript" src="{{ url_for('static', filename='/js/hospital_info.js') }}"></script>
+    <p id="demo" style="font-size:15px ;text-align: center;"></p><br>
+    <p id="streaming" style="font-size:15px ;text-align:center;"></p><br>
+    <p id="url" style="font-size:15px ;text-align:center;"></p>
+    <!-- <script>
+        // import { streaming, stream_update} from "./stream.js";
+        var xhttp = new XMLHttpRequest();
+        var url = "http://10.3.32.201:8001"
+
+        var doctors = {};
+        var Ambulance = {};
+        var Hosp_info = {};
+        var Ambulance_case_accept = {};
+        var ambdata;
+        var Hosp_Id; 
+        var stream_request = {};
+        var start_streming={};
+        var streaming_URL;
+        function stream(){
+            location.href = streaming_URL;
+        }
+        function Post_start_streaming(){
+            var amb_id = Object.entries(stream_request)[0][0];
+            start_streming[amb_id] = {};
+            start_streming[amb_id][Hosp_Id]={};
+            start_streming[amb_id][Hosp_Id]["stream"] = "start streaming";
+            console.log(start_streming)
+            // stream[AmbId] = { hosp_id: { "stream" : "start streaming"}} 
+            xhttp.open("POST", url+"/hospital/Send_Stream", false);
+            xhttp.setRequestHeader("Accept", "application/json");
+            xhttp.setRequestHeader("Content-Type", "application/json");
+            xhttp.send(JSON.stringify(start_streming));
+            xhttp.onload;
+            var res = xhttp.responseText;
+            console.log(res);
+            let url_response = JSON.parse(res);
+            streaming_URL = url_response[amb_id][Hosp_Id]["stream"];
+            let text = "<button id=\"streamurl\" onclick=\"stream()\">Stream</button>";
+            document.getElementById("streaming").innerHTML = text;
+        }
+
+        function Post_case_Accepted(){
+            console.log("post case accepted!!");
+            let amb_id = (Object.entries(Ambulance))[0][0];
+            console.log(amb_id);
+
+            var data = Object.entries((Object.entries(Ambulance))[0][1]);
+            console.log(data);
+
+            var amb_case = data[2][1];
+            console.log(doctors[amb_case]);
+
+            Ambulance_case_accept[amb_id] = {};
+            Ambulance_case_accept[amb_id][Hosp_Id] = {};
+            Ambulance_case_accept[amb_id][Hosp_Id]["Amb_status"] = "CASE ACCEPTED";
+            Ambulance_case_accept[amb_id][Hosp_Id][amb_case] = doctors[amb_case];
+            console.log(Ambulance_case_accept);
+
+            while(1){
+                var check=0;
+                xhttp.open("POST", url+"/hospital/case_accepted", false);
+                xhttp.setRequestHeader("Accept", "application/json");
+                xhttp.setRequestHeader("Content-Type", "application/json");
+                xhttp.send(JSON.stringify(Ambulance_case_accept));
+                xhttp.onload;
+                var res = xhttp.responseText;
+                console.log(res);
+
+                stream_request = JSON.parse(res);
+                // let key = (Object.keys(Ambulance))[0];
+            
+                if (stream_request[amb_id][Hosp_Id]["stream"] == "Stream_Available"){
+
+                    var stream = Object.entries(stream_request);
+                    let amb_id= stream[0][0];
+                
+                    let text = "<table border='1'>"
+                    text +="<h2><b>"+"Stream Available";
+                    text += "<tr>"+"<td>"+"Ambulance Id"+"</td>"+"<td>"+Hosp_Id+"</td>"+
+                            "<td>"+"stream"+"</td>"+"<td>"+"Do you like to Stream?"+
+                            "</td>"+"</tr>";
+
+                    text += "<tr>"+"<td>"+amb_id+"</td>"+"<td>"+Hosp_Id+"</td>"+
+                            "<td>"+stream_request[amb_id][Hosp_Id]['stream']+
+                            "</td>"+"<td> <input type=\"checkbox\" onclick=\"Post_start_streaming() \"> </td>"+"</tr>";
+
+                    text += "</table>"
+                    check =1;
+                    document.getElementById("streaming").innerHTML = text;
+                            
+                }else
+                {
+                    check = 0;
+                    document.getElementById("streaming").innerHTML =res;
+                    
+                }
+                if (check == 1){
+                    break;
+                }
+                
+            }
+        
+        }
+
+        function Post_Hospital_Info(){
+            var result = 0;
+            Hosp_info[Hosp_Id] = {"status" : Hosp_status, "doctors" : doctors }
+            
+            while(1){ 
+                xhttp.open("POST", url+"/hospital/details", false);
+                xhttp.setRequestHeader("Accept", "application/json");
+                xhttp.setRequestHeader("Content-Type", "application/json");
+                xhttp.send(JSON.stringify(Hosp_info));
+                xhttp.onload;
+                var res = xhttp.responseText;
+
+                console.log(res);
+                Ambulance = JSON.parse(res);
+                let key = (Object.keys(Ambulance))[0];
+
+                if(Ambulance[key]["Amb_status"] == "CASE_AVAILABLE" )
+                {   
+                    let ambid = Object.entries(Ambulance);
+                    let ambdata = Object.entries(ambid[0][1]);
+                    amb_status = ambdata[0][0];
+                    let ambulance_capability = ambdata[1][0];
+                    let case_info = ambdata[2][0];
+                    let emergency = ambdata[3][0];
+                    let location = ambdata[4][0];
+
+                    let text = "<table border='1'>"
+                    text+="<h2><b>"+"Ambulance case Information";
+                    text += "<tr>"+"<td>"+"Ambulance ID"+"</td>"+"<td>"+amb_status+"</td>"+ 
+                            "<td>"+ambulance_capability+"</td>"+"<td>"+case_info+"</td>"+
+                            "<td>"+emergency +"</td>"+"<td>"+location+"</td>"+
+                            "<td>"+"CheckBox"+"</td>"+"</tr>";
+
+                    text += "<tr>"+"<td>"+ambid[0][0]+"</td>"+"<td>"+ambdata[0][1]+"</td>"+
+                            "<td>"+ambdata[1][1]+"</td>"+"<td>"+ambdata[2][1]+"</td>"+
+                            "<td>"+ambdata[3][1]+"</td>"+"<td>"+ambdata[4][1]+"</td>"+
+                            "<td> <input type=\"checkbox\" onclick=\"Post_case_Accepted() \"> </td>"+"</tr>";
+
+                    text += "</table>"
+                    result = 1;
+                    document.getElementById("demo").innerHTML = text;
+                
+                } else 
+                {
+                    result=0;
+                    document.getElementById("demo").innerHTML = res;  
+                    
+                }   
+
+                if (result == 1){
+                    break;
+                }    
+            }
+        
+        } 
+
+        // HospitalID
+        var Hosp_select = document.getElementById("Hospital_List")
+        var Hosp_Id = Hosp_select.options[Hosp_select.selectedIndex].value;
+        console.log(Hosp_Id);
+
+        // Status
+        var Hosp_status = (document.getElementById("status")).options[document.getElementById("status").selectedIndex].value;
+        console.log(Hosp_status);
+
+        // Doctors list
+        doctors['Ortho'] = document.getElementById("Ortho").value;
+        doctors['Cardio'] = document.getElementById("Cardio").value
+        doctors['Opthalmo'] = document.getElementById("Opthalmo").value;
+        doctors['Neuro'] = document.getElementById("neuro").value; 
+        // submit
+        document.getElementById("submit").addEventListener("click", Post_Hospital_Info);
+    </script>  -->
+</body>
+</html>

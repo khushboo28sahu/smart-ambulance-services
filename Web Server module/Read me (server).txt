@@ -1,0 +1,54 @@
+# Instructions at the server:
+=============================================================================================
+The server is running at the public IP : 14.139.54.203 (with interface 'wlx00e917003d45') \
+and the open ports are 5076 - 5082. The Flask server is running at port 5076 and for the \
+inter-stream coding, 5078 - 5081 ports are being used.
+
+The interstream coding script is - Receiver.py, 
+                                 - support_func_Rx.py
+Flask server coding script is    - flask_server.py
+                                      |
+                                      | -- templates
+                                      | -- static
+                                 - index.html
+
+The local assigned ip for this public ip is 10.3.53.16 and the flask server is running in http://10.3.53.16:5076.
+
+Package requirments :
+  1. Flask, Flask_cors
+  2. Simplehttpserver
+  3. Gstreammer
+  4. Scapy-python3==0.23(Ubuntu 18.03) {sudo pip3 install scapy-python3==0.23}
+  5. python3==3.6(Ubuntu 18.03) 
+  6. requests
+  7. net-tools
+  8. sympy
+
+Commands :
+  1. Free the port 5076
+    sudo kill -9 $(sudo lsof -t -i:5076)
+  2. Kill the process
+    sudo kill -9 $(ps aux | grep python | awk '{print $2}')
+  3. check the packets with tcpdump
+    sudo tcpdump -i wlx00e917003d45 -n udp 
+  5. turn off the firewall
+    sudo ufw disable
+  6. ffmpeg command
+    sudo ffmpeg -f v4l2 -i /dev/video0 -an -vcodec libx264 -f rtp rtp://localhost:1234
+  7. Gstreammer command 
+    I.  gst-launch-1.0 -v udpsrc port=1234 caps = "application/x-rtp, media=(string)video, \
+        clock-rate=(int)90000, encoding-name=(string)H264, payload=(int)96" ! rtph264depay \
+        ! decodebin ! videoconvert ! autovideosink
+    II. gst-launch-1.0 -v udpsrc port=4567 caps = "application/x-rtp, media=(string)video, \
+        clock-rate=(int)90000, encoding-name=(string)H264, payload=(int)96" ! rtpjitterbuffer\
+        latency = 0 ! rtph264depay ! decodebin ! videoconvert ! clockoverlay ! x264enc tune = \
+        zerolatency ! mpegtsmux ! hlssink playlist-root = http://10.3.53.16:5077 location=segment_%05d.ts\
+        target-duration=3 max-files=5
+
+Run commands :
+1. sudo python3 flask_server.py
+2. sudo python3 Receiver_ISC.py
+
+Some Reference links:
+1. Gstreammer HLS : https://4youngpadawans.com/stream-live-video-to-browser-using-gstreamer/
+2. Scapy installation : https://libraries.io/pypi/scapy-python3/0.23

@@ -1,0 +1,22 @@
+# Instructions at theambulance:
+# =================================
+
+1. Check the interface connections on both the Rpis and kill the previous python processes:
+
+   Open terminal ctrl+alt+t
+   ifconfig      #for connection check
+   sudo kill -9 $(ps aux | grep python | awk '{print $2}')     #to kill the existing python processes
+			   
+   Stacked Rpi2: sshpass -p 'raspberry' ssh -o StrictHostKeyChecking=no -t pi@169.254.219.242
+                 ifconfig      #for connection check
+			     sudo kill -9 $(ps aux | grep python | awk '{print $2}')     #to kill the existing python processes
+			     exit  #to close the connection
+			   
+2. Go to path: cd ~/Megha/Final\ Demo/
+			     
+3. To run:
+
+	sudo python3 ambulance.py
+   
+4. User input when streaming starts: Redundancy Interface: 1      # give 1 incase of total 3 interfaces
+
