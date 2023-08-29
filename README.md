@@ -13,6 +13,8 @@
 ![System Model](assets/System.png)
 System Model for Multi-interface based Smart Ambulance.
 
+
+## Applications
 ![Applications](assets/MAS_arch.png)
 Application scenario.
 
