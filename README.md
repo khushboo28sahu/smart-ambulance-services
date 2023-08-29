@@ -1,4 +1,4 @@
-# smart-ambulance-services-using-multiple-network-paths-and-open-APIs
+# Summary
 
 - In contemporary healthcare, there's a growing synergy between healthcare and emergency response systems to bolster patient care, particularly through smart-ambulance services. These services are continually evolving to meet the evolving healthcare needs, requiring concurrent upgrades within hospitals for swift and efficient services.
 
