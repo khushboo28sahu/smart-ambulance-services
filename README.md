@@ -19,8 +19,12 @@ System Model for Multi-interface based Smart Ambulance.
 Application scenario.
 
 ## System Setup
-![Applications](assets/setup.png)
+![System Setup](assets/setup.png)
 Multi-LTE interface system setup.
+
+## Server
+![Server](assets/server.png)
+Server APIs
 
 
 
