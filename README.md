@@ -8,7 +8,11 @@
 
 - The implementation of these ideas at a product level is shared, along with real-world results. Detailed explanations of the front-end and back-end procedures are provided to validate the effectiveness of the proposed algorithms in enhancing patient care and healthcare system responsiveness.
 
-# System Model
+## System Model
 
 ![System Model](assets/System.png)
-System Model for Multi-interface based Smart Ambulance
+System Model for Multi-interface based Smart Ambulance.
+
+![Applications](assets/MAS_arch.png)
+Application scenario.
+
