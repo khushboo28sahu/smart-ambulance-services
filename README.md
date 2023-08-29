@@ -10,5 +10,5 @@
 
 # System Model
 
-<img src="assets/Gstreammer_video.png" alt="System_model" width="500" height="333">
-
+![System Model](assets/System.png)
+System Model for Multi-interface based Smart Ambulance
