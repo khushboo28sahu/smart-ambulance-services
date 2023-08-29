@@ -10,5 +10,5 @@
 
 # System Model
 
-<img src="assets/System arch.png" alt="System_model" width="500" height="333">
+<img src="assets/System.png" alt="System_model" width="500" height="333">
 
