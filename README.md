@@ -14,17 +14,28 @@
 System Model for Multi-interface based Smart Ambulance.
 
 
+
 ## Applications
 ![Applications](assets/MAS_arch.png)
 Application scenario.
+
+
 
 ## System Setup
 ![System Setup](assets/setup.png)
 Multi-LTE interface system setup.
 
+
+
 ## Server
 ![Server](assets/server.png)
-Server APIs
+Server APIs.
+
+
+
+## Video Streaming
+![Video Streaming](assets/Gstreammer_video.png)
+GStreamer-based video upstreaming pipeline.
 
 
 
