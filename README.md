@@ -7,3 +7,37 @@
 - Additionally, a standardized set of APIs is proposed to access smart-ambulance services, providing live data for improved information utilization. This empowers hospital systems to be highly responsive and adaptable during critical situations, both in the pre-hospital and post-hospital phases of patient care.
 
 - The implementation of these ideas at a product level is shared, along with real-world results. Detailed explanations of the front-end and back-end procedures are provided to validate the effectiveness of the proposed algorithms in enhancing patient care and healthcare system responsiveness.
+
+## System Model
+
+![System Model](assets/System.png)
+System Model for Multi-interface based Smart Ambulance.
+
+
+
+## Applications
+![Applications](assets/MAS_arch.png)
+Application scenario.
+
+
+
+## System Setup
+![System Setup](assets/setup.png)
+Multi-LTE interface system setup.
+
+
+
+## Server
+![Server](assets/server.png)
+Server APIs.
+
+
+
+## Video Streaming
+![Video Streaming](assets/Gstreammer_video.png)
+GStreamer-based video upstreaming pipeline.
+
+
+
+
+
