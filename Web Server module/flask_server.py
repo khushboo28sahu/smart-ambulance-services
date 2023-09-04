@@ -11,7 +11,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-# global variable's
+# global variables
 Hospital = {}
 Ambulance = {}
 case_Accepted = {}
@@ -36,7 +36,7 @@ def gst():
     )  # 5082 previos open port
 
 
-""" SERVER STATUS"""
+# SERVER STATUS
 
 
 @app.get("/")
@@ -76,7 +76,7 @@ def run(server_class=HTTPServer, handler_class=Handler):
 
 
 # ------------------------  AMBULANCE   ----------------------------------------------------------
-""" Ambulance API's"""
+# Ambulance APIs
 
 
 @app.post("/ambulance/details")
@@ -92,7 +92,7 @@ def ambulance_handler():
         return jsonify({"AMB01": {"HOSP01": {"Amb_status": " Hold on!!"}}})
 
 
-""" Ambulance Stream Request API : Handle the stream request's"""
+# Ambulance Stream Request API: Handle the stream requests
 
 
 @app.post("/ambulance/stream_request")
@@ -124,7 +124,7 @@ def start_stream():
         return "Ok"
 
 
-"""Location Updation"""
+# Location Updation
 
 
 @app.post("/ambulance/location_update")
@@ -137,7 +137,7 @@ def ambulance_location():
 
 # -----------------------  HOSPITAL  ----------------------------------------------------------
 
-""" GET : Ambulance location """
+# GET: Ambulance location
 
 
 @app.get("/hospital/send_location")
@@ -148,7 +148,7 @@ def get_ambulance_location():
         return jsonify({"Location": "Not Available"})
 
 
-""" Hospital details API : Handles the Hospital information & Response back to hospital about the Ambulance"""
+# Hospital details API: Handles the Hospital information & Response back to the hospital about the Ambulance
 
 
 @app.post("/hospital/details")
@@ -183,7 +183,7 @@ def process_hosp():
         return jsonify({key: {"Amb_status": "No Case Available"}})
 
 
-""" Case_accepted API : It will handle the hospitals case information and response back with the STREAM AVAIlable msg"""
+# Case_accepted API : It will handle the hospital's case information and response back with the STREAM AVAIlable msg
 
 
 @app.post("/hospital/case_accepted")
@@ -204,7 +204,7 @@ def Case_Accepted():
         return jsonify({amb_id: {hosp_id: {"stream": "No_Stream_Available"}}})
 
 
-"""Hospital Start stream : Handle the start stream request"""
+# Hospital Start stream: Handle the start stream request
 
 
 @app.post("/hospital/Send_Stream")
@@ -231,6 +231,6 @@ if __name__ == "__main__":
     t3.join()
 
 """
-PUBLIC IP : "http://14.139.54.203:5076"        
-Open Port range : 5076 - 5082
+# PUBLIC IP : "http://14.139.54.203:5076"        
+# Open Port range : 5076 - 5082
 """
