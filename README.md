@@ -30,7 +30,7 @@ Server APIs.
 
 
 ## Sequence Diagram
-![Sequence Diagram](assets/SequenceDiagram.png)
+![Sequence Diagram](assets/SequenceDiagram_whiteBG.png)
 Sequence diagram: Ambulance-Server-Hospital.
 
 
