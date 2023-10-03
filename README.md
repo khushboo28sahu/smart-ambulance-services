@@ -8,6 +8,10 @@
 
 - The implementation of these ideas at a product level is shared, along with real-world results. Detailed explanations of the front-end and back-end procedures are provided to validate the effectiveness of the proposed algorithms in enhancing patient care and healthcare system responsiveness.
 
+
+
+Self-explanatory illustrative diagrams are shown below. The images are of high quality, which might take some time to load. If it still doesn't load, please click on the image links, switch browser, or go to the image folder (https://github.com/khushboo28sahu/smart-ambulance-services/tree/main/assets).
+
 ## System Model
 
 ![System Model](assets/System.png)
@@ -29,16 +33,16 @@ Multi-LTE interface system setup.
 Server APIs.
 
 
-## Sequence Diagram
-![Sequence Diagram](assets/SequenceDiagram.png)
-Sequence diagram: Ambulance-Server-Hospital.
-
-
 ## Video Streaming
 ![Video Streaming](assets/Gstreammer_video.png)
 GStreamer-based video upstreaming pipeline.
 
 
 
+## Contact info
+For any questions, please reach out at 
+
+- bhaveshs@iitbhilai.ac.in
+- khushboos@iitbhilai.ac.in
 
 
